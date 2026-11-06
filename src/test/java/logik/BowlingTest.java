@@ -1,6 +1,6 @@
 package logik;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class BowlingTest {
         for (int i = 0; i < 20; i++) {
             b.roll(0);
         }
-        assertEquals(0, b.score());
+        assertThat(b.score()).isEqualTo(0);
     }
 
     @Test
@@ -21,7 +21,7 @@ class BowlingTest {
         for (int i = 0; i < 20; i++) {
             b.roll(1);
         }
-        assertEquals(20, b.score());
+        assertThat(b.score()).isEqualTo(20);
     }
 
     @Test
@@ -33,7 +33,7 @@ class BowlingTest {
         for (int i = 0; i < 17; i++) {
             b.roll(0);
         }
-        assertEquals(16, b.score());
+        assertThat(b.score()).isEqualTo(16);
     }
 
     @Test
@@ -45,7 +45,7 @@ class BowlingTest {
         for (int i = 0; i < 16; i++) {
             b.roll(0);
         }
-        assertEquals(24, b.score());
+        assertThat(b.score()).isEqualTo(24);
     }
 
     @Test
@@ -54,6 +54,6 @@ class BowlingTest {
         for (int i = 0; i < 12; i++) {
             b.roll(10);
         }
-        assertEquals(300, b.score());
+        assertThat(b.score()).isEqualTo(300);
     }
 }

@@ -1,6 +1,6 @@
 package logik;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,14 +33,14 @@ public class BowlingAcceptanceTest {
     @DisplayName("20 x 0 -> 0 (Gutter Game)")
     void givenGutterGame_whenScore_thenReturn0() {
         rollMany(20, 0);
-        assertEquals(0, game.score());
+        assertThat(game.score()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("20 x 1 -> 20 (nur Open Frames)")
     void givenAllOnes_whenScore_thenReturn20() {
         rollMany(20, 1);
-        assertEquals(20, game.score());
+        assertThat(game.score()).isEqualTo(20);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class BowlingAcceptanceTest {
     void givenOneSpare_whenScore_thenReturn16() {
         roll(5, 5, 3);
         rollMany(17, 0);
-        assertEquals(16, game.score());
+        assertThat(game.score()).isEqualTo(16);
     }
 
     @Test
@@ -56,21 +56,21 @@ public class BowlingAcceptanceTest {
     void givenOneStrike_whenScore_thenReturn24() {
         roll(10, 3, 4);
         rollMany(16, 0);
-        assertEquals(24, game.score());
+        assertThat(game.score()).isEqualTo(24);
     }
 
     @Test
     @DisplayName("12 x 10 -> 300 (Perfect Game)")
     void givenPerfectGame_whenScore_thenReturn300() {
         rollMany(12, 10);
-        assertEquals(300, game.score());
+        assertThat(game.score()).isEqualTo(300);
     }
 
     @Test
     @DisplayName("21 x 5 -> 150 (nur Spares, Bonuswurf im 10. Frame)")
     void givenAllSpares_whenScore_thenReturn150() {
         rollMany(21, 5);
-        assertEquals(150, game.score());
+        assertThat(game.score()).isEqualTo(150);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class BowlingAcceptanceTest {
     void givenSpareInTenthFrame_whenScore_thenReturn15() {
         rollMany(18, 0);
         roll(5, 5, 5);
-        assertEquals(15, game.score());
+        assertThat(game.score()).isEqualTo(15);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class BowlingAcceptanceTest {
     void givenStrikesInTenthFrame_whenScore_thenReturn30() {
         rollMany(18, 0);
         roll(10, 10, 10);
-        assertEquals(30, game.score());
+        assertThat(game.score()).isEqualTo(30);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class BowlingAcceptanceTest {
     void givenTenPinsAcrossTwoFrames_whenScore_thenNoSpareBonus() {
         roll(3, 5, 5, 2);
         rollMany(16, 0);
-        assertEquals(15, game.score());
+        assertThat(game.score()).isEqualTo(15);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class BowlingAcceptanceTest {
     void givenZeroThenTen_whenScore_thenCountAsSpare() {
         roll(0, 10, 5, 3);
         rollMany(16, 0);
-        assertEquals(23, game.score());
+        assertThat(game.score()).isEqualTo(23);
     }
 
     @Test
@@ -110,13 +110,13 @@ public class BowlingAcceptanceTest {
     void givenTwoStrikesInARow_whenScore_thenReturn47() {
         roll(10, 10, 3, 4);
         rollMany(14, 0);
-        assertEquals(47, game.score());
+        assertThat(game.score()).isEqualTo(47);
     }
 
     @Test
     @DisplayName("Beispielspiel vom Arbeitsblatt -> 154")
     void givenExampleGameFromWorksheet_whenScore_thenReturn154() {
         roll(10, 3, 7, 8, 0, 7, 2, 10, 10, 9, 0, 6, 4, 4, 5, 10, 7, 2);
-        assertEquals(154, game.score());
+        assertThat(game.score()).isEqualTo(154);
     }
 }
